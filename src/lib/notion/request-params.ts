@@ -54,3 +54,4 @@ export interface PropertyValueSortObject {
   property: string
   direction: string
 }
+

@@ -42,7 +42,7 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
 <Layout title={`Posts ${page}/${numberOfPages}`} path={`/posts/page/${page}`}>
   <div slot="main" class={styles.main}>
     <header>
-      <div class="page-container">{page}/{numberOfPages}</div>
+      <div class="page-container">ページ: {page}/{numberOfPages}</div>
     </header>
 
     {
@@ -71,8 +71,8 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
   </div>
 
   <div slot="aside" class={styles.aside}>
-    <BlogPostsLink heading="Recommended" posts={rankedPosts} />
-    <BlogTagsLink heading="Categories" tags={tags} />
+    <BlogPostsLink heading="おすすめの記事" posts={rankedPosts} />
+    <BlogTagsLink heading="カテゴリ" tags={tags} />
   </div>
 </Layout>
 
@@ -82,6 +82,7 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
     line-height: 1.3;
     font-size: 1.2rem;
     font-weight: normal;
+    border-bottom: 1px solid #888;
   }
   @media (max-width: 640px) {
     .page-container {

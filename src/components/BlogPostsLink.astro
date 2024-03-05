@@ -13,6 +13,7 @@ const { heading, posts } = Astro.props
 
 <div class="blog-posts-link">
   <h2>{heading}</h2>
+  <hr />
   {
     posts.length === 0 ? (
       <NoContents contents={posts} />
@@ -72,9 +73,14 @@ const { heading, posts } = Astro.props
     line-height: 1.2rem;
     color: inherit;
     font-size: 0.95rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .blog-posts-link ul li a:hover {
     background-color: #ddd;
+    position: relative;
+    width: fit-content;
   }
   .blog-posts-link ul li a span,
   .blog-posts-link ul li a img {
@@ -85,5 +91,8 @@ const { heading, posts } = Astro.props
     width: 1.25rem;
     height: 1.25rem;
     vertical-align: sub;
+  }
+  .blog-posts-link hr {
+    border-bottom: 1px dashed #888;
   }
 </style>

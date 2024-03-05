@@ -14,6 +14,7 @@ const { heading, tags } = Astro.props
 
 <div class="blog-tags-link">
   <h2>{heading}</h2>
+  <hr />
   {
     tags.length === 0 ? (
       <NoContents contents={tags} />
@@ -60,5 +61,8 @@ const { heading, tags } = Astro.props
     line-height: 1.2;
     color: rgb(50, 48, 44);
     background: rgba(227, 226, 224, 0.5);
+  }
+  .blog-tag-link hr {
+    border: 1px dashed #888;
   }
 </style>

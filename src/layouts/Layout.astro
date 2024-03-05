@@ -129,10 +129,10 @@ if (database.Icon && database.Icon.Type === 'file') {
                 <br /><br />
                 <p>
                 #show sns<br />
-                <a href="https://twitter.com/smith0120">　active x[twitter]</a>
+                <a href="https://twitter.com/smith0120">▶ active x[twitter]</a>
                 <br />
                 #show network study<br />
-                <a href="http://smithlabo.com/posts/tag/study">　>> ネットワーク初級編</a>
+                <a href="http://smithlabo.com/posts/tag/study">▶ ネットワーク初級編</a>
                 </p>
                 <hr />
               </div>
@@ -202,11 +202,32 @@ if (database.Icon && database.Icon.Type === 'file') {
     position: sticky;
     top: 0;
     height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #00000000;
+    }
+    &::-webkit-scrollbar-track {
+      background: #00000000;
+    }
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background: #0000004d;
+      }
+      &::-webkit-scrollbar-track {
+        background: #0000001a;
+      }
+    }
   }
   @media (max-width: 640px) {
     aside {
       order: 2;
       width: 100%;
+      height: 100%;
+      overflow-y: hidden;
     }
   }
 

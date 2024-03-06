@@ -15,7 +15,7 @@ let title = post.Title
 <h2 class="post-title">
   {
     enableLink ? (
-      <a href={getPostLink(post.Slug)}>>  
+      <a href={getPostLink(post.Slug)}>#  
         {post.Icon && post.Icon.Type === 'emoji' ? (
           <>
             <span>{post.Icon.Emoji}</span>
@@ -23,7 +23,7 @@ let title = post.Title
           </>
         ) : post.Icon && post.Icon.Type === 'external' ? (
           <>
-            <img src={post.Icon.Url} alt="Post title icon" />
+            <!-- <img src={post.Icon.Url} alt="Post title icon" /> -->
             {title}
           </>
         ) : (
@@ -39,7 +39,7 @@ let title = post.Title
           </>
         ) : post.Icon && post.Icon.Type === 'external' ? (
           <>
-            <img src={post.Icon.Url} alt="Post title icon" />
+            <!-- <img src={post.Icon.Url} alt="Post title icon" /> -->
             {title}
           </>
         ) : (

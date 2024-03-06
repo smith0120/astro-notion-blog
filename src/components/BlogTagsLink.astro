@@ -40,12 +40,16 @@ const { heading, tags } = Astro.props
     color: #777;
     font-size: 0.95rem;
     border-bottom: 1px dashed #888;
+    margin-bottom: 12px;
   }
   .blog-tags-link ul {
     list-style-type: none;
     padding: 0;
     margin-top: 0.3rem;
     margin-block-end: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
   }
   .blog-tags-link ul li {
     position: relative;

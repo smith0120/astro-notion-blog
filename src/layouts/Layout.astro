@@ -118,7 +118,9 @@ if (database.Icon && database.Icon.Type === 'file') {
                 {
                   coverImageURL && (
                     <div class="cover">
-                      <img src={coverImageURL} alt="smithlabo" loading="lazy" />
+                      <a href={getNavLink('/')}>
+                        <img src={coverImageURL} alt="smithlabo" loading="lazy" />
+                      </a>
                     </div>
                   )
                 }

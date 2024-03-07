@@ -52,11 +52,11 @@ const currentTag = posts[0].Tags.find((t) => t.name === tag)
       ) : (
         posts.map((post) => (
           <div class={styles.post} key={post.Slug}>
-            <PostTitle post={post} />
+            <PostTitle post={post} /><PostTags post={post} />
             <PostFeaturedImage post={post} />
             <!-- <PostExcerpt post={post} />
             <PostDate post={post} />
-            <PostTags post={post} /> -->
+             -->
           </div>
         ))
       )

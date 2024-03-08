@@ -17,7 +17,6 @@
     "_fetch-notion-blocks": "node scripts/retrieve-block-children.cjs"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^9.1.0",
     "@astrojs/react": "^3.0.3",
     "@astrojs/rss": "^3.0.0",
     "@notionhq/client": "^2.2.5",

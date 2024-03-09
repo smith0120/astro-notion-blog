@@ -76,6 +76,72 @@ if (database.Icon && database.Icon.Type === 'file') {
     />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9629816540353064"
      crossorigin="anonymous"></script>
+
+     <!-- いいね追加 -->
+
+<script>
+  let num, liked, count;
+  const likeSpan = document.getElementById("likeSpan");
+  const likeBtn = document.getElementById("likeBtn");
+  const pageTitle = document.getElementById("thisTitle");
+  const url = document.getElementById("thisUrl");
+  const checkbox = document.getElementById("isLike");
+  const localSt = localStorage.getItem("mylike");
+  
+  pageTitle.value = document.title;
+  url.value = location.href;
+  
+  if (localSt) {
+    likeBtn.classList.add("liked");
+    likeBtn.disabled = true;
+  }
+  
+  const likeSubmit = function (isLike) {
+    num = likeSpan.innerHTML;
+    if (!isLike) {
+      num++;
+      likeSpan.innerHTML = num;
+      likeBtn.classList.add("liked");
+      checkbox.checked = true;
+      document.likePostData.submit();
+      localStorage.setItem("mylike", true);
+      likeBtn.title = "いいねしました。";
+    } else {
+      num--;
+      likeSpan.innerHTML = num;
+      likeBtn.classList.remove("liked");
+      checkbox.checked = false;
+      document.likePostData.submit();
+      localStorage.removeItem("mylike");
+      likeBtn.title = "この記事に「いいね！」する";
+    }
+  };
+  
+  likeBtn.addEventListener(
+    "click",
+    () => {
+      liked = likeBtn.classList.contains("liked");
+      likeSubmit(liked);
+    },
+    {
+      once: false,
+      passive: true,
+      capture: false
+    }
+  );
+  
+  const titleURL = url.value;
+  const param = { titleURL };
+  const query = new URLSearchParams(param);
+  fetch(`https://script.google.com/macros/s/AKfycby8HT1_Wu8jGP2nMqgxOiV_i3BqVMVTOLIYtnrAIFKdVw0XIqAOQ5QJSHVpUENzHgwiww/exec?${query}`)
+    .then((response) => response.json())
+    .then((likeJson) => {
+      count = likeJson.likeCount;
+      likeSpan.innerHTML = count;
+    });
+    </script>
+  
+
   </head>
   <body>
     <GoogleAnalytics trackingId={PUBLIC_GA_TRACKING_ID} />
@@ -139,6 +205,23 @@ if (database.Icon && database.Icon.Type === 'file') {
                 #show date<br />
                 <a href="/posts/wareki-seireki/">&nbsp;和暦-西暦変換と年度</a>
                 </p>
+
+                <!--いいね追加 -->
+                <div id="likeBtn" title="この記事に「いいね！」する" role="button">
+                  #この記事に「いいね！」する
+                  [<span id="likeSpan"></span>]
+                </div>
+                
+                <!-- フォームの送信先 URL を指定 -->
+                <form action="https://script.google.com/macros/s/AKfycby8HT1_Wu8jGP2nMqgxOiV_i3BqVMVTOLIYtnrAIFKdVw0XIqAOQ5QJSHVpUENzHgwiww/exec" method="POST" name="likePostData" style="display: none" target="hidden_iframe">
+                  <input value="" name="pageTitle" readonly="readonly" type="text" id="thisTitle" />
+                  <input value="" name="titleURL" readonly="readonly" type="text" id="thisUrl" />
+                  <input type="checkbox" name="like" id="isLike" value="isLike" />
+                  <iframe name="hidden_iframe"></iframe>
+                </form>
+
+
+
               </div>
             </header>
 
@@ -486,4 +569,42 @@ if (database.Icon && database.Icon.Type === 'file') {
     display: inline-block;
     min-height: 0.9rem;
   }
+
+
+/* いいね追加 */
+#likeBtn {
+  fill: #d6d1d0;
+  transition: all 0.3s ease-in;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  width: auto;
+  padding: 2px;
+  border-radius: 3px;
+  justify-content: right;
+}
+
+#likeBtn svg,
+#likeBtn polygon {
+  height: 100%;
+  pointer-events: none;
+}
+
+#likeBtn span {
+  font-size: 13px;
+  margin-left: 0px;
+  pointer-events: none;
+}
+
+#likeBtn.liked {
+  fill: #130066;
+}
+
+#likeBtn .checkmark {
+  visibility: hidden;
+}
+
+#likeBtn.liked .checkmark {
+  visibility: visible;
+}
 </style>

@@ -68,8 +68,8 @@ const currentTag = posts[0].Tags.find((t) => t.name === tag)
   </div>
 
   <div slot="aside" class={styles.aside}>
-    <BlogPostsLink heading="おすすめ記事" posts={rankedPosts} />
     <BlogTagsLink heading="カテゴリ" tags={tags} /> 
+    <BlogPostsLink heading="おすすめ記事" posts={rankedPosts} />
 </Layout>
 
 <style>

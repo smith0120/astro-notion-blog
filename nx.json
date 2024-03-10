@@ -1,4 +1,6 @@
 {
+  "nxCloudAccessToken": "OGVjYzcwYWMtYjYxNS00ZjMwLWIxOGItNjRmYTI5MjkyYWUyfHJlYWQtd3JpdGU=",
+  "nxCloudUrl": "https://cloud.nx.app",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",

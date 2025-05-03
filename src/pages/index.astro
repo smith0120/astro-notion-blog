@@ -35,6 +35,7 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
       ) : (
         posts.map((post) => (
           <div class={styles.post} key={post.Slug}>
+            <hr />
             <PostDate post={post} />
             <PostTags post={post} />
             <PostTitle post={post} />
@@ -52,7 +53,7 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
   </div>
 
   <div slot="aside" class={styles.aside}>
-    <BlogPostsLink heading="Recommended" posts={rankedPosts} />
-    <BlogTagsLink heading="Categories" tags={tags} />
+    <BlogPostsLink heading="BestProject" posts={rankedPosts} />
+    <BlogTagsLink heading="カテゴリ" tags={tags} />
   </div>
 </Layout>

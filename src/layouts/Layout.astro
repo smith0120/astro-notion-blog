@@ -124,11 +124,54 @@ if (database.Icon && database.Icon.Type === 'file') {
 
 
               <div class="description">
-                {database.Description}
+                <!--{database.Description}-->
+                show tech# show environment<br />
+                ネットワークエンジニアというものをやりながらガジェットや新しいツール的なものが大好きでとりあえず試してみることが多い.そんなものなどを残していこうかなと >> log<br >
+                .ただそれだけのoutput置き場. <br />
+                <br />
+                <pre>
+------------------------------
+Last login: Sun Jan 00:00:01 on console
+show tech::
+------------------------------
+!
+User Access Verification
+Password:
+******************************
+*                            
+*  Welcome to the show tech  
+*    "Tech is My Life"       
+*                            
+******************************
+
+show tech> en
+show tech# show run | sec new entry
+</pre>
               </div>
             </header>
 
             <slot name="main" />
+
+<pre>
+!
+!
+show tech# show run | sec my life
+!
+interface Loopback0
+description Tech is my life
+!
+alias exec life echo "Tech is my life”
+!
+— More —
+show tech# conf t
+show tech(config)# commitment tech-life enable
+show tech(config)# passion always-on
+show tech(config)# not end
+show tech# wr mem
+Building configuration...
+[OK]
+show tech# exit
+</pre>
 
             <footer>
               <div>

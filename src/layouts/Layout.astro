@@ -131,7 +131,7 @@ if (database.Icon && database.Icon.Type === 'file') {
                 <br />
                 <pre>
 ------------------------------
-Last login: Sun Jan 00:00:01 on console
+Last login: Sun Jan 00:00:01 
 show tech::
 ------------------------------
 !
@@ -144,8 +144,8 @@ Password:
 *                            *
 ******************************
 
-show tech> en
-show tech# show run | sec new entry
+> en
+# show run | sec new entry
 </pre>
               </div>
             </header>
@@ -160,17 +160,18 @@ show tech# show run | sec my life
 interface Loopback0
 description Tech is my life
 !
-alias exec life echo "Tech is my life”
+alias exec life
+echo "Tech is my life”
 !
 — More —
-show tech# conf t
-show tech(config)# commitment tech-life enable
-show tech(config)# passion always-on
-show tech(config)# not end
-show tech# wr mem
+# conf t
+(config)# tech-life enable
+(config)# passion always-on
+(config)# not end
+# wr mem
 Building configuration...
 [OK]
-show tech# exit
+# exit
 </pre>
 
             <footer>

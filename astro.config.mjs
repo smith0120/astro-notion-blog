@@ -5,6 +5,7 @@ import CoverImageDownloader from './src/integrations/cover-image-downloader';
 import CustomIconDownloader from './src/integrations/custom-icon-downloader';
 import FeaturedImageDownloader from './src/integrations/featured-image-downloader';
 import PublicNotionCopier from './src/integrations/public-notion-copier';
+import sitemap from '@astrojs/sitemap'; // インポートする
 
 const getSite = function () {
   if (CUSTOM_DOMAIN) {
@@ -34,7 +35,8 @@ const getSite = function () {
 
 // https://astro.build/config
 export default defineConfig({
-  site: getSite(),
+  //site: getSite(),
+  site: "https://smithlabo.com",
   base: BASE_PATH,
   integrations: [
     icon(),
@@ -42,5 +44,6 @@ export default defineConfig({
     CustomIconDownloader(),
     FeaturedImageDownloader(),
     PublicNotionCopier(),
+    sitemap(),
   ],
 });

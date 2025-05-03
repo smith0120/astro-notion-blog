@@ -74,6 +74,7 @@ if (database.Icon && database.Icon.Type === 'file') {
       integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
       crossorigin="anonymous"
     />
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
     <GoogleAnalytics trackingId={PUBLIC_GA_TRACKING_ID} />
@@ -201,12 +202,6 @@ Building configuration...
 </html>
 
 <style>
-  .container {
-    display: flex;
-    justify-content: center; /* 水平方向に中央寄せ */
-    min-height: 100vh;
-  }
-
   .container > div {
     display: flex;
     max-width: 1280px;

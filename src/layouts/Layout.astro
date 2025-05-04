@@ -112,7 +112,11 @@ if (database.Icon && database.Icon.Type === 'file') {
                   }
                 </a>
               </h1>
-
+              <div class="description">
+                <!--{database.Description}-->
+                show tech# show environment<br />
+                ネットワークエンジニアというものをやりながらガジェットや新しいツール的なものが大好きでとりあえず試してみることが多い.そんなものなどを残していこうかなと >> log<br >
+                .ただそれだけのoutput置き場. 
               <header>
                 {
                   coverImageURL && (
@@ -123,19 +127,9 @@ if (database.Icon && database.Icon.Type === 'file') {
                 }
               </header>
 
-
               <div class="description">
                 <!--{database.Description}-->
-                show tech# show environment<br />
-                ネットワークエンジニアというものをやりながらガジェットや新しいツール的なものが大好きでとりあえず試してみることが多い.そんなものなどを残していこうかなと >> log<br >
-                .ただそれだけのoutput置き場. <br />
-                <br />
                 <pre>
-------------------------------
-Last login: Sun Jan 00:00:01 
-show tech::
-------------------------------
-!
 User Access Verification
 Password:
 ******************************
@@ -149,7 +143,7 @@ Password:
 # show run | sec category
 </pre>
 !<br />
- <a href="https://smithlabo.com/posts/tag/iphone">[iphone] iPhoneをAliexpressのパーツで組み立てる</a><br />
+ <a href="https://smithlabo.com/posts/tag/iphone">[iphone] iPhoneをパーツから組み立てる</a><br />
  <a href="https://smithlabo.com/posts/tag/study">[study] ネットワーク基礎をAIさんと勉強する</a><br />
  <a href="https://smithlabo.com/posts/tag/automate">[automate] n8nをはじめとした自動化</a><br />
  <a href="https://smithlabo.com/posts/tag/delivery">[delivery] Aliexpressなどの配送履歴のメモ</a><br />
@@ -162,7 +156,7 @@ Password:
 !<br />
 <pre>
 # show run | sec recommendation
-<h4>ネットワークを勉強するならまずはこれ読んどけという本
+<h4>ネットワークを勉強するならまずはこれ
   <a href="https://hb.afl.rakuten.co.jp/ichiba/399adaf5.069f77c4.399adaf6.251f1749/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2Fab1bd4bf09ef34b7b23164546473999d%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9">マスタリングTCP/IP　入門編（第6版）</a>
 </h4>
 !
@@ -174,7 +168,7 @@ Password:
             <slot name="main" />
 
 <div class="description">
-<h4>techに生きるならmacbookは必需品です.<br />
+<h4>techに生きるならmacbookは必需品です<br />
 <a href="https://hb.afl.rakuten.co.jp/hgc/00113f3e.4c521fe2.0bce4490.73e3e708/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fmacbook%2F&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9">macbook検索</a>
 </div>
 <pre>
@@ -226,6 +220,10 @@ Building configuration...
 </html>
 
 <style>
+  .container{
+    height: 90vh;
+    align-items: center; /* optional */
+  }
   .container > div {
     display: flex;
     max-width: 1280px;
@@ -252,6 +250,9 @@ Building configuration...
     width: 300px;
     padding: 20px 20px;
     background-color: #f4f4f4;
+    position: sticky;
+    top: 0;
+    height: 100vh;
   }
   @media (max-width: 640px) {
     aside {
@@ -320,7 +321,8 @@ Building configuration...
   
   div.description a{
     background-color: rgb(243, 234, 251);
-    font-size: small;
+    font-size: 0.８rem;
+    line-height: 1.5;
   }
   div.description h4{
     background-color: rgb(232, 232, 254);
@@ -379,6 +381,10 @@ Building configuration...
     padding: 0;
     margin: 0;
     font-size: 16px;
+    display: flex;
+    justify-content: center;   /* 水平方向の中央揃え */
+    align-items: center;       /* 垂直方向の中央揃え */
+    min-height: 100vh;         /* 画面全体の高さを確保 */
   }
 
   body {
@@ -448,7 +454,7 @@ Building configuration...
   ul {
     color: #222;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.8rem;
   }
   ul,

@@ -45,6 +45,9 @@ const { heading, tags } = Astro.props
     padding: 0;
     margin-top: 0.3rem;
     margin-block-end: 1rem;
+    display: flex;           /* 横並びにする */
+    flex-wrap: wrap;       /* wrapにして横幅に合わせて折り返すならこれ */
+    gap: 6px;                /* タグ間の余白 */
   }
   .blog-tags-link ul li {
     position: relative;
@@ -52,6 +55,9 @@ const { heading, tags } = Astro.props
     line-height: 1.2rem;
     font-size: 0.9rem;
     gap: 6px;
+    padding: 0;              /* 余白をリセット */
+    margin: 0;               /* 余白をリセット */
+    isplay: inline-block;   /* インライン要素として横並び */
   }
   .blog-tags-link ul li a {
     min-width: 0;

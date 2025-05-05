@@ -114,9 +114,6 @@ if (database.Icon && database.Icon.Type === 'file') {
               </h1>
               <div class="description">
                 <!--{database.Description}-->
-                show tech# show environment<br />
-                ネットワークエンジニアというものをやりながらガジェットや新しいツール的なものが大好きでとりあえず試してみることが多い.そんなものなどを残していこうかなと >> log.<br >
-                ただそれだけのoutput置き場. 
               <header>
                 {
                   coverImageURL && (
@@ -129,57 +126,9 @@ if (database.Icon && database.Icon.Type === 'file') {
 
               <div class="description">
                 <!--{database.Description}-->
-                <pre>
-User Access Verification
-Password:
-******************************
-*                            *
-*  Welcome to the show tech  *
-*    "Tech is My Life"       *
-*                            *
-******************************
 
-> en
-# show run | sec category
-</pre>
-!<br />
-description iPhoneをパーツから組み立てる<br />
-&emsp;access to access to <a href="https://smithlabo.com/posts/tag/iphone%E3%83%93%E3%83%AB%E3%83%89">[iphoneビルド]</a><br />
-!<br />
-description ネットワーク基礎をAIさんと勉強する<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/network%E5%8B%89%E5%BC%B7/">[ネットワーク勉強]</a><br />
-!<br />
-description n8nをはじめとした自動化<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/%E8%87%AA%E5%8B%95%E5%8C%96">[自動化] </a><br />
-!<br />
-description Aliexpressなどの配送履歴のメモ<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/%E9%85%8D%E9%80%81%E5%B1%A5%E6%AD%B4">[配送履歴]</a><br />
-!<br />
-description ガジェットなどの趣味のこと<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/%E8%B6%A3%E5%91%B3">[趣味]</a><br />
-!<br />
-description macカスタマイズなど<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/mac">[mac]</a><br />
-!<br />
-description よく参照するものを作成してみた<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/tools">[tools]</a><br />
-!<br />
-description 本職のネットワークの趣味よりな話<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/network">[network]</a><br />
-!<br />
-description windowsも利用するのです<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/windows">[windows]</a><br />
-!<br />
-description ホームページ作成などのメモ<br />
-&emsp;access to <a href="https://smithlabo.com/posts/tag/homepage">[homepage]</a><br />
-!<br />
 <pre>
-# show run | sec recommendation
-<h4>ネットワークを勉強するならまずはこれ
-  <a href="https://hb.afl.rakuten.co.jp/ichiba/399adaf5.069f77c4.399adaf6.251f1749/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2Fab1bd4bf09ef34b7b23164546473999d%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9">マスタリングTCP/IP　入門編（第6版）</a>
-</h4>
-!
-# show run | sec new entry
+Network engineer required >>>  <a href="https://hb.afl.rakuten.co.jp/ichiba/399adaf5.069f77c4.399adaf6.251f1749/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2Fab1bd4bf09ef34b7b23164546473999d%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9">マスタリングTCP/IP　入門編（第6版）</a>
 </pre>
               </div>
             </header>
@@ -187,30 +136,10 @@ description ホームページ作成などのメモ<br />
             <slot name="main" />
 
 <div class="description">
-<h4>techに生きるならmacbookは必需品です<br />
+tech life required >>> 
 <a href="https://hb.afl.rakuten.co.jp/hgc/00113f3e.4c521fe2.0bce4490.73e3e708/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fmacbook%2F&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9">macbook検索</a>
 </div>
-<pre>
-!
-!
-show tech# show run | sec my life
-!
-interface Loopback0
-description Tech is my life
-!
-alias exec life
-echo "Tech is my life”
-!
-— More —
-# conf t
-(config)# tech-life enable
-(config)# passion always-on
-(config)# not end
-# wr mem
-Building configuration...
-[OK]
-# exit
-</pre>
+
 
             <footer>
               <div>
@@ -343,9 +272,7 @@ Building configuration...
     background-color: rgb(243, 234, 251);
     font-size: 0.８rem;
   }
-  div.description h4{
-    background-color: rgb(232, 232, 254);
-  }
+
 
   main footer {
     margin: 30px 0 10px;

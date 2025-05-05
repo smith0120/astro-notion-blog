@@ -15,7 +15,7 @@ const blocks = await getAllBlocksByBlockId(INDEX_PAGE_ID)
 
 const [rankedPosts, recentPosts, tags] = await Promise.all([
   getRankedPosts(),
-  getPosts(10),
+  getPosts(5),
   getAllTags(),
 ])
 ---

@@ -11,7 +11,7 @@ export interface Props {
 const { post, enableLink = true } = Astro.props
 ---
 
-
+<div class="post-tags-div">
 <div class="post-tags">
   {
     post.Tags &&
@@ -28,13 +28,12 @@ const { post, enableLink = true } = Astro.props
       })
   }
 </div>
-<div class="post-tags-div"></div>
+</div>
 
 <style>
   .post-tags-div {
     margin-left: 12px;
     display: inline-block;
-    _display: inline;
   }
   .post-tags {
     font-size: 0.9rem;

@@ -114,14 +114,17 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
   </div>
 
   <div slot="aside" class="aside">
+    <BlogTagsLink heading="カテゴリ" tags={tags} />
+    <br /><hr />
     <BlogPostsLink
       heading="Posts in the same category"
       posts={postsHavingSameTag.filter(
         (p: interfaces.Post) => p.Slug !== post.Slug
       )}
     />
+    <hr />
     <BlogPostsLink heading="Best Project" posts={rankedPosts} />
+    <br /><hr /><br />
     <BlogPostsLink heading="最近の投稿" posts={recentPosts} />
-    <BlogTagsLink heading="カテゴリ" tags={tags} />
   </div>
 </Layout>

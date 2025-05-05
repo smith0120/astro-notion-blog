@@ -1,10 +1,23 @@
 ---
+import {
+  getPosts,
+  getRankedPosts,
+  getAllTags,
+} from '../lib/notion/client.ts'
 import { INDEX_PAGE_ID } from '../server-constants.ts'
 import { getAllBlocksByBlockId } from '../lib/notion/client.ts'
 import Layout from '../layouts/Layout.astro'
 import NotionBlocks from '../components/NotionBlocks.astro'
+import BlogPostsLink from '../components/BlogPostsLink.astro'
+import BlogTagsLink from '../components/BlogTagsLink.astro'
 
 const blocks = await getAllBlocksByBlockId(INDEX_PAGE_ID)
+
+const [rankedPosts, recentPosts, tags] = await Promise.all([
+  getRankedPosts(),
+  getPosts(10),
+  getAllTags(),
+])
 ---
 
 <Layout>
@@ -12,5 +25,11 @@ const blocks = await getAllBlocksByBlockId(INDEX_PAGE_ID)
     <NotionBlocks blocks={blocks} isRoot={true} />
   </div>
 
-  <div slot="aside"></div>
+  <div slot="aside">
+	<BlogTagsLink heading="カテゴリ" tags={tags} />
+	<br /><hr /><br />
+	<BlogPostsLink heading="最近の投稿" posts={recentPosts} />
+	<br /><hr /><br />
+	<BlogPostsLink heading="BestProject" posts={rankedPosts} />
+  </div>
 </Layout>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>サブネット計算ツール</title>
+  <script src="https://smithlabo.com/tools/js/subnet.js" defer></script>
+</head>
+<body>
+  <h1>サブネット計算ツール</h1>
+  <label>IPアドレス: <input type="text" id="ip" placeholder="例: 192.168.0.1" /></label><br />
+  <label>サブネットマスク: 
+    <select id="mask"></select>
+  </label><br />
+  <button onclick="calculate()">計算</button>
+
+  <h2>結果</h2>
+  <div id="result"></div>
+</body>
+</html>

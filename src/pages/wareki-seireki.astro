@@ -1,0 +1,102 @@
+---
+import {
+  getPosts,
+  getRankedPosts,
+  getAllTags,
+} from '../lib/notion/client.ts'
+import { INDEX_PAGE_ID } from '../server-constants.ts'
+import { getAllBlocksByBlockId } from '../lib/notion/client.ts'
+import Layout from '../layouts/Layout.astro'
+import NotionBlocks from '../components/NotionBlocks.astro'
+import BlogPostsLink from '../components/BlogPostsLink.astro'
+import BlogTagsLink from '../components/BlogTagsLink.astro'
+
+const blocks = await getAllBlocksByBlockId(INDEX_PAGE_ID)
+
+const [rankedPosts, recentPosts, tags] = await Promise.all([
+  getRankedPosts(),
+  getPosts(5),
+  getAllTags(),
+])
+---
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>サブネット計算ツール</title>
+  <script src="../js/wareki-seireki.js" defer></script>
+</head>
+
+<Layout>
+  <div slot="main" class="main">
+    <h1>和暦・西暦相互変換ツール</h1>
+    
+    <hr />
+    <h2>西暦 → 和暦</h2>
+    <label for="seireki">西暦:</label>　 (例: 2020-01-01)
+    <input type="date" id="seireki">
+    <p id="wareki-result">和暦: </p>
+    <p id="fiscal-wareki">年度: </p>
+
+    <hr />
+    <h2>和暦 → 西暦</h2>
+    <label for="era">元号：</label>
+    <select id="era">
+      <option value="令和">令和</option>
+      <option value="平成">平成</option>
+      <option value="昭和">昭和</option>
+      <option value="大正">大正</option>
+      <option value="明治">明治</option>
+    </select>
+    <br />
+    <label for="year">年　：</label>
+    <select id="year"></select>
+    <br />
+    <label for="month">月　：</label>
+    <select id="month"></select>
+    <br />
+    <label for="day">日　：</label>
+    <select id="day"></select>
+  
+    <p id="result">西暦: </p>
+    <p id="fiscal-seireki">年度: </p>
+    <hr />
+
+
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  </div>
+
+  <div slot="aside">
+	<BlogTagsLink heading="カテゴリ" tags={tags} />
+	<br /><hr /><br />
+	<BlogPostsLink heading="最近の投稿" posts={recentPosts} />
+	<br /><hr /><br />
+	<BlogPostsLink heading="BestProject" posts={rankedPosts} />
+  </div>
+</Layout>
+
+<style>
+.subnet-card {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.subnet-line {
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-left: 4px solid #ddd;
+  font-family: monospace;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.subnet-card.highlight,
+.subnet-line.highlight {
+  background-color: #ffe5e5 !important;
+  border-bottom: 1px #ccc;
+}
+</style>

@@ -40,11 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		  <div class="subnet-card highlight">
 			<strong>${s.cidr}</strong><br /><br />
 <pre>
-[ネットワークアドレス   ]: ${s.network}
-[サブネットマスク       ]: ${s.mask}
-[IPアドレス範囲         ]: ${s.network} ～ ${s.broadcast}
-[利用可能IPアドレス範囲 ]: ${s.usableRange}
-[IPアドレス数           ]: ${s.totalIPs}（利用可能ホスト数: ${s.usableHosts}）
+[ネットワークアドレス]:
+ ${s.network}
+[サブネットマスク    ]:
+ ${s.mask}
+[IPアドレス範囲      ]:
+ ${s.network} ～ ${s.broadcast}
+[利用可能範囲        ]:
+ ${s.usableRange}
+[IPアドレス数        ]:
+ ${s.totalIPs}（利用可能ホスト数: ${s.usableHosts}）
 </pre><br />
 		  </div>`;
 	  }

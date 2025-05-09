@@ -21,55 +21,43 @@ document.addEventListener("DOMContentLoaded", () => {
 	const subnets = listSubnets(ip, maskBits);
 	let html = "";
   
-	let detailedBlock = null;
-	const simplifiedRows = [];
-  
+	const simplifiedLines = [];
+
 	subnets.forEach(s => {
-	  const networkInt = ipToInt(s.network);
-	  const broadcastInt = ipToInt(s.broadcast);
-	  const isMatch = inputIPInt >= networkInt && inputIPInt <= broadcastInt;
-  
-	  if (isMatch) {
-		detailedBlock = `
-		  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px; background-color: #ffe5e5;">
-			<strong>${s.cidr}</strong>
-			<ul>
-			  <li>ネットワークアドレス: ${s.network}</li>
-			  <li>ブロードキャストアドレス: ${s.broadcast}</li>
-			  <li>IPアドレス数: ${s.totalIPs}（利用可能ホスト数: ${s.usableHosts}）</li>
-			  <li>使用可能範囲: ${s.usableRange}</li>
-			  <li>サブネットマスク: ${s.mask}</li>
-			</ul>
+		const networkInt = ipToInt(s.network);
+		const broadcastInt = ipToInt(s.broadcast);
+		const isMatch = inputIPInt >= networkInt && inputIPInt <= broadcastInt;
+	  
+		simplifiedLines.push(`
+		  <div class="subnet-line${isMatch ? ' highlight' : ''}">
+			${s.network} [${s.network} ～ ${s.broadcast}]
+		  </div>
+		`);
+	
+	  // 上部の詳細カード表示も維持
+	  if (isMatch && !html.includes("subnet-card")) {
+		html += `
+		  <div class="subnet-card highlight">
+			<strong>${s.cidr}</strong><br /><br />
+<pre>
+[ネットワークアドレス   ]: ${s.network}
+[サブネットマスク       ]: ${s.mask}
+[IPアドレス範囲         ]: ${s.network} ～ ${s.broadcast}
+[利用可能IPアドレス範囲 ]: ${s.usableRange}
+[IPアドレス数           ]: ${s.totalIPs}（利用可能ホスト数: ${s.usableHosts}）
+</pre><br />
 		  </div>`;
 	  }
-  
-	  simplifiedRows.push(`
-		<tr style="background-color: ${isMatch ? '#ffe5e5' : 'transparent'};">
-		  <td>${s.network}</td>
-		  <td>/${maskBits} (${s.mask})</td>
-		  <td>${s.network} ～ ${s.broadcast}</td>
-		  <td>${s.usableRange}</td>
-		</tr>`);
 	});
   
-	html += detailedBlock ?? "<p>該当するサブネットが見つかりませんでした。</p>";
+	if (!html) {
+	  html = "<p>該当するサブネットが見つかりませんでした。</p>";
+	}
   
-	html += `<hr><h3>その他のサブネット一覧</h3>`;
-	html += `
-	  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; min-width: 800px;">
-		<thead style="background-color: #f0f0f0;">
-		  <tr>
-			<th>ネットワークアドレス</th>
-			<th>サブネットマスク</th>
-			<th>IPアドレス範囲</th>
-			<th>利用可能IPアドレス範囲</th>
-		  </tr>
-		</thead>
-		<tbody>
-		  ${simplifiedRows.join("\n")}
-		</tbody>
-	  </table>
-	`;
+	if (simplifiedLines.length) {
+	  html += `<hr><h3>その他のサブネット一覧</h3>`;
+	  html += simplifiedLines.join("\n");
+	}
   
 	document.getElementById("result").innerHTML = html;
   }
@@ -79,31 +67,31 @@ document.addEventListener("DOMContentLoaded", () => {
 	const subnetSize = Math.pow(2, 32 - maskBits);
 	const subnets = [];
   
-	// グループ単位決定
 	let groupBits = 24;
 	if (maskBits <= 23 && maskBits >= 16) groupBits = 16;
 	else if (maskBits <= 15 && maskBits >= 8) groupBits = 8;
 	else if (maskBits < 8) groupBits = 0;
   
-	const groupMask = (0xFFFFFFFF << (32 - groupBits)) >>> 0;
+	const groupMask = (groupBits === 0) ? 0 : (0xFFFFFFFF << (32 - groupBits)) >>> 0;
 	const groupBaseInt = baseInt & groupMask;
-	const groupSize = Math.pow(2, 32 - groupBits);
+	const groupSize = groupBits === 0 ? Math.pow(2, 32) : Math.pow(2, 32 - groupBits);
 	const groupEnd = groupBaseInt + groupSize;
   
 	for (let net = groupBaseInt; net < groupEnd; net += subnetSize) {
 	  const maskInt = (0xFFFFFFFF << (32 - maskBits)) >>> 0;
-	  const networkInt = net;
-	  const broadcastInt = networkInt | (~maskInt >>> 0);
+	  const networkInt = net >>> 0;
+	  const broadcastInt = (networkInt | (~maskInt)) >>> 0;
 	  const totalIPs = Math.pow(2, 32 - maskBits);
 	  const usableHosts = maskBits >= 31 ? 0 : totalIPs - 2;
+	  const usableRange = maskBits >= 31 ? "なし" : `${intToIP(networkInt + 1)} ～ ${intToIP(broadcastInt - 1)}`;
   
 	  subnets.push({
 		cidr: `${intToIP(networkInt)}/${maskBits}`,
 		network: intToIP(networkInt),
 		broadcast: intToIP(broadcastInt),
-		usableRange: maskBits >= 31 ? 'なし' : `${intToIP(networkInt + 1)} 〜 ${intToIP(broadcastInt - 1)}`,
 		totalIPs,
 		usableHosts,
+		usableRange,
 		mask: intToIP(maskInt)
 	  });
 	}

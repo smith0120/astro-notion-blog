@@ -1,0 +1,78 @@
+---
+import {
+  getPosts,
+  getRankedPosts,
+  getAllTags,
+} from '../lib/notion/client.ts'
+import { INDEX_PAGE_ID } from '../server-constants.ts'
+import { getAllBlocksByBlockId } from '../lib/notion/client.ts'
+import Layout from '../layouts/Layout.astro'
+import NotionBlocks from '../components/NotionBlocks.astro'
+import BlogPostsLink from '../components/BlogPostsLink.astro'
+import BlogTagsLink from '../components/BlogTagsLink.astro'
+
+const blocks = await getAllBlocksByBlockId(INDEX_PAGE_ID)
+
+const [rankedPosts, recentPosts, tags] = await Promise.all([
+  getRankedPosts(),
+  getPosts(5),
+  getAllTags(),
+])
+---
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>サブネット計算ツール</title>
+  <script src="../js/subnet.js" defer></script>
+</head>
+
+<Layout>
+  <div slot="main" class="main">
+    <hr />
+    <h1>IPアドレス サブネット計算ツール</h1>
+    <label>IPアドレス: <input type="text" id="ip" placeholder="例: 192.168.0.1" /></label><br />
+    <label>サブネットマスク: 
+      <select id="mask"></select>
+    </label><br />
+    <button onclick="calculate()">計算</button>
+    <hr />
+    <h2>結果</h2>
+    <div id="result"></div>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  </div>
+
+  <div slot="aside">
+	<BlogTagsLink heading="カテゴリ" tags={tags} />
+	<br /><hr /><br />
+	<BlogPostsLink heading="最近の投稿" posts={recentPosts} />
+	<br /><hr /><br />
+	<BlogPostsLink heading="BestProject" posts={rankedPosts} />
+  </div>
+</Layout>
+
+<style>
+.subnet-card {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.subnet-line {
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-left: 4px solid #ddd;
+  font-family: monospace;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.subnet-card.highlight,
+.subnet-line.highlight {
+  background-color: #ffe5e5 !important;
+  border-bottom: 1px #ccc;
+}
+</style>

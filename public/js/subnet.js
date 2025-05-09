@@ -38,23 +38,24 @@ document.addEventListener("DOMContentLoaded", () => {
 	  if (isMatch && !html.includes("subnet-card")) {
 		html += `
 		  <div class="subnet-card highlight">
-			<strong>${s.cidr}</strong><br /><br />
-<hr />
-■ネットワークアドレス:<br />
-  <strong>${s.network}</strong><br />
-<hr />
-■サブネットマスク:<br />
-  <strong>${s.mask}</strong><br />
-<hr />
- ■IPアドレス範囲:<br />
-  <strong>${s.network} ～ ${s.broadcast}</strong><br />
-<hr />
- ■利用可能範囲:<br />
-  <strong>${s.usableRange}</strong><br />
-<hr />
- ■IPアドレス数:<br />
-  <strong>${s.totalIPs}（利用可能ホスト数: ${s.usableHosts}）</strong><br />
+  <strong>検索IPアドレス:</strong><br />
+  &nbsp;${ip}<br />
+  <strong>サブネットマスク:</strong><br />
+  &nbsp;${maskBits} (${s.mask})<br />
 <br />
+
+<hr />
+ <strong>ネットワークアドレス</strong><br />
+ &nbsp;${s.cidr}<br />
+ <strong>利用可能範囲:</strong><br />
+ &nbsp;${s.usableRange}<br />
+ <strong>ブロードキャストアドレス:</strong><br />
+ &nbsp;${s.broadcast}<br />
+<hr />
+ <strong>IPアドレス数:</strong><br />
+ &nbsp;${s.totalIPs} （利用可能ホスト数: ${s.usableHosts}）<br />
+ <strong>IPアドレス範囲:</strong><br />
+ &nbsp;${s.network} ～ ${s.broadcast}<br />
 		  </div>`;
 	  }
 	});

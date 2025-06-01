@@ -7,6 +7,19 @@ import GoogleAnalytics from '../components/GoogleAnalytics.astro'
 import SearchModal from '../components/SearchModal.astro'
 import SearchButton from '../components/SearchButton.astro'
 
+import {
+  getPosts,
+  getAllTags,
+} from '../lib/notion/client.ts'
+import BlogPostsLink from '../components/BlogPostsLink.astro'
+import BlogTagsLink from '../components/BlogTagsLink.astro'
+
+const [recentPosts, tags] = await Promise.all([
+  getPosts(5),
+  getAllTags(),
+])
+
+
 export interface Props {
   title: string
   description: string
@@ -116,7 +129,7 @@ if (database.Icon && database.Icon.Type === 'file') {
                 </a>
               </h1>
               <div class="description">
-                <!--{database.Description}-->
+                <pre>{database.Description}</pre>
               <header>
                 {
                   coverImageURL && (
@@ -129,25 +142,14 @@ if (database.Icon && database.Icon.Type === 'file') {
 
               <div class="description">
                 <!--{database.Description}-->
-
-<pre>
-Network engineer required
- >>>  <a href="https://hb.afl.rakuten.co.jp/ichiba/399adaf5.069f77c4.399adaf6.251f1749/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2Fab1bd4bf09ef34b7b23164546473999d%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9">マスタリングTCP/IP　入門編（第6版）</a>  
-tools
- >>> <a href="https://smithlabo.com/subnet/">サブネット計算</a>  <a href="https://smithlabo.com/wareki-seireki/">和暦-西暦変換</a>
-</pre>
+                 <hr />
+                 <BlogPostsLink heading="最近の投稿" posts={recentPosts} />
+                 <BlogTagsLink heading="カテゴリ" tags={tags} />
+                 <hr />
               </div>
             </header>
 
-            <slot name="main" />
-
-<div class="description">
-<pre>
-tech life required
- >>> <a href="https://hb.afl.rakuten.co.jp/hgc/00113f3e.4c521fe2.0bce4490.73e3e708/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2Fmacbook%2F&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9">macbook検索</a>  >>> <a href="https://hb.afl.rakuten.co.jp/ichiba/47c50945.a9471652.47c50946.7a38c409/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fe-earphone%2F6942103112225%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9">Huawei FreeClip</a>
-</pre>
-</div>
-
+<slot name="main" /> 
 
             <footer>
               <div>

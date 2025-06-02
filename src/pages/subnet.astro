@@ -22,7 +22,7 @@ const [rankedPosts, recentPosts, tags] = await Promise.all([
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>サブネット計算ツール</title>
+  <title>サブネット計算ツール（IPアドレス）</title>
   <script src="../js/subnet.js" defer></script>
 </head>
 
@@ -30,6 +30,8 @@ const [rankedPosts, recentPosts, tags] = await Promise.all([
   <div slot="main" class="main">
     <hr />
     <h1>IPアドレス サブネット計算ツール</h1>
+    検索したいIPアドレスとサブネットマスクを入力してください.<br />
+    その他関連するIPセグメントも含めて出力します.<br /><br />
     <label>IPアドレス: <input type="text" id="ip" placeholder="例: 192.168.0.1" /></label><br />
     <label>サブネットマスク: 
       <select id="mask"></select>
